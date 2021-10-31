@@ -63,21 +63,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_divide:
                 isDivide = true;
+
+                isMultiply = false;
+                isMinus = false;
+                isPlus = false;
                 saveValueFromDisplay();
                 isSecondVar = true;
                 break;
             case R.id.btn_multiply:
                 isMultiply = true;
+
+                isDivide = false;
+                isMinus = false;
+                isPlus = false;
                 saveValueFromDisplay();
                 isSecondVar = true;
                 break;
             case R.id.btn_minus:
                 isMinus = true;
+
+                isDivide = false;
+                isMultiply = false;
+                isPlus = false;
                 saveValueFromDisplay();
                 isSecondVar = true;
                 break;
             case R.id.btn_plus:
                 isPlus = true;
+
+                isDivide = false;
+                isMultiply = false;
+                isMinus = false;
                 saveValueFromDisplay();
                 isSecondVar = true;
                 break;
