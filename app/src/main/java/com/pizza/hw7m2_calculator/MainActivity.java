@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private double firstVar, secondVar;
     private double finalVar;
 
-    private int isFirstClickOnSecondVar;
+    private int isFirstClickOnSecondVar = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnMinus.setOnClickListener(this);
         btnPlus.setOnClickListener(this);
         btnEquals.setOnClickListener(this);
+        btnAC.setOnClickListener(this);
 
     }
+
 
     @Override
     public void onClick(View v) {
@@ -105,6 +107,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String result = String.valueOf(finalVar);
                     tvDisplay.setText(result);
                 }
+                break;
+            case R.id.btn_ac:
+                Toast.makeText(this, "furry", Toast.LENGTH_SHORT).show();
+                clearAll();
 
         }
     }
@@ -116,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (isSecondVar) {
             isFirstClickOnSecondVar++;
-            setNumOnDisplay(btnText);
+            altSetNumOnDisplay(btnText);
         }
     }
 
@@ -126,12 +132,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             tvDisplay.append(numInput);
         }
+    }
 
+    public void altSetNumOnDisplay(String numInput) {
         if (isSecondVar) {
-            if (isFirstClickOnSecondVar < 2) {
+            if (isFirstClickOnSecondVar <= 1) {
                 tvDisplay.setText(numInput);
             } else {
-                tvDisplay.append(numInput);
+//                tvDisplay.append(numInput);
             }
         }
     }
@@ -144,17 +152,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    /*public void onEquals(View view) {
-        switch (view.getId()) {
-            case R.id.btn_equals:
-                saveValueFromDisplay();
-                if (isDivide) {
-                    int v1 = Integer.parseInt(firstVar);
-                    int v2 = Integer.parseInt(secondVar);
-                    finalVar = v1 / v2;
-                    tvDisplay.setText(finalVar);
-                }
-                break;
-        }
-    }*/
+    public void clearAll() {
+        isSecondVar = false;
+
+        isDivide = false;
+        isMultiply = false;
+        isMinus = false;
+        isPlus = false;
+
+        firstVar = 0;
+        secondVar = 0;
+        finalVar = 0;
+        isFirstClickOnSecondVar = 0;
+
+        tvDisplay.setText("0");
+    }
 }
